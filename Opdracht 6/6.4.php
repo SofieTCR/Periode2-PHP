@@ -6,28 +6,24 @@
 </form>
 
 <?php
-
 // Controleer of het formulier is verzonden
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Haal de straal uit het formulier
   $radius = $_POST['radius'];
 
-  // De constante pi
-  define("PI", 3.14159);
-
-  // Functie om de omtrek te berekenen
-  function bereken_omtrek($radius) {
-    return 2 * PI * $radius;
-  }
-
-  // Functie om de oppervlakte te berekenen
-  function bereken_oppervlakte($radius) {
-    return PI * $radius * $radius;
-  }
-
   // Bereken de omtrek en oppervlakte
-  $circumference = bereken_omtrek($radius);
-  $area = bereken_oppervlakte($radius);
+  echo("De omtrek van een cirkel met straal $radius is: " . bereken_omtrek($radius) . "<br>");
+  echo("De oppervlakte van een cirkel met straal $radius is: " . bereken_oppervlakte($radius));
+}
 
- 
+
+// Functie om de omtrek te berekenen
+function bereken_omtrek($radius) {
+  return 2 * 3.14159 * $radius;
+}
+
+// Functie om de oppervlakte te berekenen
+function bereken_oppervlakte($radius) {
+  return 3.14159 * $radius * $radius;
+}
 ?>
