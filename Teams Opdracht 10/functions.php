@@ -49,6 +49,9 @@
  function PrintResult($par) {
     //print table
     echo "<table border=1px>";
+    foreach (array_keys($par[0]) as $key) {
+         echo "<td>" , $key;  "</td>";
+    }
     foreach ($par as $data) {
         echo "<tr>";
         foreach (array_keys($data) as $dat) {
