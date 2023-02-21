@@ -1,7 +1,7 @@
 <?php
 include("./functions.php");
 
-OvzBieren();
+//OvzBieren();
 
 //brouwers
 OvzBrouwers();
