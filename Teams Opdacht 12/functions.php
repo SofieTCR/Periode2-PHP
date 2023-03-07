@@ -36,7 +36,7 @@
     // Haal alle bier record uit de tabel 
     $result = GetData("bier");
 
-    PrintResult($result);
+    CRUDDisplay($result);
  }
 
  function OvzBrouwers() {
@@ -46,20 +46,40 @@
     PrintResult($result);
  }
 
+ function CRUDDisplay($par) {
+   //print table
+   echo "<table border=1px>";
+   foreach (array_keys($par[0]) as $key) {
+        echo "<td>" . $key . "</td>";
+   }
+
+   foreach ($par as $data) {
+       echo "<tr>";
+       foreach (array_keys($data) as $dat) {
+           echo "<td>" . $data [$dat] . "</td>";
+       }
+       echo "<td><form method=post action=temp.php><input type=hidden name=id value=" . $data["biercode"] . "><input type=submit value=Wijzig name=submit></form></td>";
+       echo "<td><input type=submit value=Verwijderen name=submit" . "</td>";
+       echo "</tr>";
+   }
+   echo "</table>";
+ }
+
  function PrintResult($par) {
     //print table
-    echo "<table border=1px>";
-    foreach (array_keys($par[0]) as $key) {
-         echo "<td>" . $key . "</td>";
+   echo "<table border=1px>";
+   foreach (array_keys($par[0]) as $key) {
+        echo "<td>" . $key . "</td>";
+   }
+
+   foreach ($par as $data) {
+       echo "<tr>";
+       foreach (array_keys($data) as $dat) {
+           echo "<td>" . $data [$dat] . "</td>";
+       }
+       echo "</tr>";
     }
-    foreach ($par as $data) {
-        echo "<tr>";
-        foreach (array_keys($data) as $dat) {
-            echo "<td>" . $data [$dat] . "</td>";
-        }
-        echo "</tr>";
-    }
-    echo "</table>";
+    echo '"</table>';
  }
 
 ?>
