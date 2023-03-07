@@ -4,7 +4,8 @@ include("./functions.php");
 //OvzBieren();
 
 //brouwers
-OvzBieren();
+// OvzBieren();
+OvzBrouwers();
 
 
 ?>

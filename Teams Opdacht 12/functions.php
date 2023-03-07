@@ -43,7 +43,8 @@
     // haal alle brouwer records uit de database
     $result = GetData("brouwer");
 
-    PrintResult($result);
+    //PrintResult($result);
+    CRUDDisplay($result);
  }
 
  function CRUDDisplay($par) {
@@ -58,11 +59,15 @@
        foreach (array_keys($data) as $dat) {
            echo "<td>" . $data [$dat] . "</td>";
        }
-       echo "<td><form method=post action=temp.php><input type=hidden name=id value=" . $data["biercode"] . "><input type=submit value=Wijzig name=submit></form></td>";
-       echo "<td><input type=submit value=Verwijderen name=submit" . "</td>";
+       echo "<td><form method=post action=temp.php><input type=hidden name=id value=" . $data[GetPrimaryKey($data)] . "><input type=submit value=Wijzig name=submit></form></td>";
+       echo "<td><form method=post action=temp.php><input type=hidden name=id value=" . $data[GetPrimaryKey($data)] . "><input type=submit value=Verwijder name=submit></form></td>";
        echo "</tr>";
    }
    echo "</table>";
+ }
+
+ function GetPrimaryKey($par) {
+   return array_keys($par)[0];
  }
 
  function PrintResult($par) {
