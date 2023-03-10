@@ -48,22 +48,25 @@
  }
 
  function CRUDDisplay($par) {
+   $table = "";
    //print table
-   echo "<table border=1px>";
+   $table .= "<table border=1px>";
    foreach (array_keys($par[0]) as $key) {
-        echo "<td>" . $key . "</td>";
+        $table .= "<td>" . $key . "</td>";
    }
 
    foreach ($par as $data) {
-       echo "<tr>";
+       $table .= "<tr>";
        foreach (array_keys($data) as $dat) {
-           echo "<td>" . $data [$dat] . "</td>";
+           $table .= "<td>" . $data [$dat] . "</td>";
        }
-       echo "<td><form method=post action=temp.php><input type=hidden name=id value=" . $data[GetPrimaryKey($data)] . "><input type=submit value=Wijzig name=submit></form></td>";
-       echo "<td><form method=post action=temp.php><input type=hidden name=id value=" . $data[GetPrimaryKey($data)] . "><input type=submit value=Verwijder name=submit></form></td>";
-       echo "</tr>";
+       $table .= "<form method=post action=temp.php> <td> <input type=hidden name=id value=" . $data[GetPrimaryKey($data)] . "><input type=submit value=Wijzig name=submit></td>";
+       $table .= "<td> <input type=submit value=Verwijder name=submit> </td> </form>";
+       $table .= "</tr>";
    }
-   echo "</table>";
+   $table .= "</table>";
+
+   echo $table;
  }
 
  function GetPrimaryKey($par) {

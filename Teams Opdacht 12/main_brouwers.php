@@ -1,10 +1,8 @@
 <?php
+// includes the functions
 include("./functions.php");
 
-//OvzBieren();
-
-//brouwers
-// OvzBieren();
+// Overzicht
 OvzBrouwers();
 
 
