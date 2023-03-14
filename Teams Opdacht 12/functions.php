@@ -11,7 +11,7 @@
         $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
         // set the PDO error mode to exception
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        echo "Connected successfully";
+        //echo "Connected successfully";
         return $conn;
     } 
     catch(PDOException $e) {
@@ -31,23 +31,25 @@
     return $result;
  }
 
- function OvzBieren(){
+ function OvzBieren() {
+    // haal alle brouwer records uit de database
+    $wantedtable = "bier";
+    $result = GetData($wantedtable);
 
-    // Haal alle bier record uit de tabel 
-    $result = GetData("bier");
-
-    CRUDDisplay($result);
+    //PrintResult($result);
+    CRUDDisplay($result, $wantedtable);
  }
 
  function OvzBrouwers() {
     // haal alle brouwer records uit de database
-    $result = GetData("brouwer");
+    $wantedtable = "brouwer";
+    $result = GetData($wantedtable);
 
     //PrintResult($result);
-    CRUDDisplay($result);
+    CRUDDisplay($result, $wantedtable);
  }
 
- function CRUDDisplay($par) {
+ function CRUDDisplay($par, $sqltable) {
    $table = "";
    //print table
    $table .= "<table border=1px>";
@@ -60,7 +62,7 @@
        foreach (array_keys($data) as $dat) {
            $table .= "<td>" . $data [$dat] . "</td>";
        }
-       $table .= "<form method=post action=temp.php> <td> <input type=hidden name=id value=" . $data[GetPrimaryKey($data)] . "><input type=submit value=Wijzig name=submit></td>";
+       $table .= "<form method=post action=edit.php> <td> <input type=hidden name=sqltable value=" . $sqltable . "><input type=hidden name=id value=" . $data[GetPrimaryKey($data)] . "><input type=submit value=Wijzig name=submit></td>";
        $table .= "<td> <input type=submit value=Verwijder name=submit> </td> </form>";
        $table .= "</tr>";
    }

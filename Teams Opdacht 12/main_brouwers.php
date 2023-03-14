@@ -3,7 +3,8 @@
 include("./functions.php");
 
 // Overzicht
-OvzBrouwers();
+//OvzBrouwers();
+OvzBieren();
 
 
 ?>
