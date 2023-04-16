@@ -1,0 +1,301 @@
+/* CSS Vars Sofie*/
+:root
+{
+    --Main-Colour: #9a97c1;
+    --Accent-Colour-1: #5e6190;
+    --Accent-Colour-2: #444672;
+}
+
+*
+{
+    margin: 0px;
+    padding: 0px;
+}
+
+/* General Information
+    Main Font: font-family: 'Imprima', sans-serif;
+    Logo Font:  font-family: 'Libre Barcode 39 Text';
+    pagina css class&id names start with <pagename>_
+*/
+
+/* Menu CSS */
+header{
+    background-color: var(--Accent-Colour-1);
+}
+.ul_menu {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  display: flex; 
+  align-items: center;
+}
+.p_menulogo{
+    line-height: 8vh;
+    font-size: 25px;
+    padding-right: 15px;
+    margin-left: 15px;
+    background-image: linear-gradient(to left, violet, indigo, blue, green, yellow, orange, red);   -webkit-background-clip: text;
+    color: transparent;
+
+}
+
+.menu_li {
+    background-color: var(--Accent-Colour-1);
+    margin-right: 20px;
+    text-align: center;
+    border: 9px;
+    border-radius: 14px;
+   
+  }
+
+.menu_li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.menu_li a:hover {
+    background-color: var(--Accent-Colour-2);
+    border: 9px;
+    border-radius: 14px;
+}
+/* Footer CSS */
+#Footer_Div
+{
+    max-width: 100vw;
+    height: 6vh;
+    background-color: var(--Accent-Colour-2);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.Footer_Links
+{
+    font-family: 'Imprima', sans-serif;
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+.Footer_Icons
+{
+    height: 5vh;
+    margin: 0.25vw;
+}
+
+/* Homepage CSS */
+#Homepage_Main
+{
+    background-color: var(--Main-Colour);
+    min-height: 86vh;
+}
+/* Inlog CSS */
+#Inlog_Main
+{
+    background-color: var(--Main-Colour);
+    max-width: 100vw;
+    min-height: 80vh;
+    padding-top: 6vh;
+    display: flex;
+    justify-content: center;
+}
+#Inlog_Div
+{
+    width: 30vw;
+    height: 60vh;
+    background-color: var(--Accent-Colour-2);
+    border-radius: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    font-family: 'Imprima', sans-serif;
+    color: white;
+}
+#Login_Form
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+}
+.Inlog_Row
+{
+    min-width: 18vw;
+    height: 2.5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Inlog_Row input
+{
+    height: 4vh;
+    background-color: var(--Main-Colour);
+    border: 2px solid var(--Accent-Colour-1);
+    padding-left: 1vw;
+    border-radius: 1.5vh;
+    outline: none;
+}
+.Inlog_Row input:focus
+{
+    outline: none;
+}
+#Inlog_Submit
+{
+    height: 6vh;
+    background-color: var(--Main-Colour);
+    border: 2px solid var(--Accent-Colour-1);
+    border-radius: 1.5vh;
+    font-family: 'Imprima', sans-serif;
+    font-weight: bolder;
+    font-size: large;
+}
+/* Systeembeheerder CSS */
+#Systeembeheerder_Main
+{
+    background-color: var(--Main-Colour);
+    max-width: 100vw;
+    min-height: 74vh;
+    padding-top: 6vh;
+    padding-bottom: 6vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+/* CRUD Display CSS */
+#Systeembeheer_CRUDDisplaytable
+{
+    background-color: var(--Accent-Colour-1);
+    border: 4px solid var(--Accent-Colour-2);
+    border-radius: 2vw;
+    padding: 2vh 1vw;
+}
+.Systeembeheer_CRUDDisplaycolumn
+{
+    padding-left: 0.4vw;
+    padding-right: 0.4vw;
+    text-align: center;
+    max-width: 14vw;
+    overflow: hidden;
+    font-family: 'Imprima', sans-serif;
+    text-overflow: ellipsis;
+    white-space: nowrap;    
+}
+.Systeembeheer_CRUDDisplaysubmit
+{
+    background-color: var(--Main-Colour);
+    border: 4px solid var(--Accent-Colour-2);
+    border-radius: 1.5vh;
+    padding: 0.5vh 0.4vw;
+    font-family: 'Imprima', sans-serif;
+    font-weight: bolder;
+    text-align: center;
+}
+.Systeembeheer_CRUDDisplaytitle
+{
+    font-family: 'Imprima', sans-serif;
+    margin-right: 1vw;
+}
+#Systeembeheer_CRUDDisplaynew
+{
+    margin-left: 1vw;
+    background-color: var(--Main-Colour);
+    border: 4px solid var(--Accent-Colour-2);
+    border-radius: 2vh;
+    padding: 0.5vh 0.4vw;
+    font-family: 'Imprima', sans-serif;
+    font-weight: bolder;
+    text-align: center;
+    font-size: large;
+}
+.Systeembeheer_CRUDDisplayselect
+{
+    min-width: 30vw;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.Systeembeheer_CRUDDisplayselectlink
+{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: inherit;
+    font-family: inherit;
+    margin-top: 0.1vh;
+    margin-bottom: 0.1vh;
+}
+.Systeembeheer_CRUDDisplayselectlink:hover {
+    text-decoration: underline;
+}
+/* Aanmeld CSS Sofie */
+#Aanmeld_Main
+{
+    background-color: var(--Main-Colour);
+    max-width: 100vw;
+    min-height: 80vh;
+    padding-top: 6vh;
+    padding-bottom: 6vh;
+    display: flex;
+    justify-content: center;
+}
+#Aanmeld_Div
+{
+    width: 35vw;
+    height: 75;
+    background-color: var(--Accent-Colour-2);
+    border-radius: 2vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    font-family: 'Imprima', sans-serif;
+    color: white;
+}
+#Aanmeld_Form
+{
+    display: flex;
+    flex-direction: column;
+    margin-top: 6vh;
+    margin-bottom: 6vh;
+}
+.Aanmeld_Row
+{
+    min-width: 25vw;
+    height: 2.5vh;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.Aanmeld_Row input
+{
+    height: 4vh;
+    background-color: var(--Main-Colour);
+    border: 2px solid var(--Accent-Colour-1);
+    padding-left: 1vw;
+    border-radius: 1.5vh;
+    outline: none;
+}
+.Aanmeld_Row input:focus
+{
+    outline: none;
+}
+#Aanmeld_Submit
+{
+    height: 6vh;
+    background-color: var(--Main-Colour);
+    border: 2px solid var(--Accent-Colour-1);
+    border-radius: 1.5vh;
+    font-family: 'Imprima', sans-serif;
+    font-weight: bolder;
+    font-size: large;
+}
