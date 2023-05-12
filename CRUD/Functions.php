@@ -186,13 +186,13 @@ function CRUDEdit($db, $table, $type, $pkarr) {
         $result .= "<input type=hidden name=table value=" . $table . ">";
 
         foreach ($keys as $key) {
+            $isprimary = false;
             $field = "<div class=CRUD_Row><label>" . $key["Field"];
-            $adddata = true;
             foreach ($keydata as $keytype) { // Remove primary keys and add labels for AI keys.
                 if ($keytype["Column_name"] == $key["Field"]) {
                     if ($keytype["Key_name"] == "PRIMARY") {
                         if ($type == "Edit") {
-                            break;
+                            $isprimary = true;
                         }
                         else {
                             $field .= " (PK)";
@@ -239,7 +239,7 @@ function CRUDEdit($db, $table, $type, $pkarr) {
                 $field .= ">";
 
                 foreach ($fkkeydata as $keytype) {
-                    if ($key["Field"] = $keytype["COLUMN_NAME"]) {
+                    if ($key["Field"] == $keytype["COLUMN_NAME"]) {
                         $optiontype = null;
                         $sql = "SELECT " . $keytype["REFERENCED_COLUMN_NAME"];
                         foreach ($fkcollist[$keytype["COLUMN_NAME"]] as $refkeytype) {
@@ -283,21 +283,10 @@ function CRUDEdit($db, $table, $type, $pkarr) {
             
 
             $field .= "></div><br>";
-            if ($type == "Edit") {
-                foreach ($keydata as $keytype) {
-                    if ($keytype["Column_name"] == $key["Field"]) {
-                        if ($keytype["Key_name"] == "PRIMARY") {
-                            $result .= "<input type=hidden name=PK_" . $key["Field"] . " value='" . $values[0][$key["Field"]] . "'>";
-                            $result .= "<input type=hidden name=" . $key["Field"] . " value='" . $values[0][$key["Field"]] . "'>";
-                        }
-                        else {
-                            $result .= $field;
-                        }
-                    }
-                    else {
-                        $result .= $field;
-                    }
-                }
+
+            if ($isprimary && $type == "Edit") {
+                $result .= "<input type=hidden name=PK_" . $key["Field"] . " value='" . $values[0][$key["Field"]] . "'>";
+                $result .= "<input type=hidden name=" . $key["Field"] . " value='" . $values[0][$key["Field"]] . "'>"; 
             }
             else {
                 $result .= $field;
