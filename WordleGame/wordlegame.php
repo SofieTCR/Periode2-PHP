@@ -37,6 +37,23 @@ $otherchars = array (
 "", //14
 "" //15
 );
+$notwantedchars = array (
+"", //1
+"", //2
+"", //3
+"", //4
+"", //5
+"", //6
+"", //7
+"", //8
+"", //9
+"", //10
+"", //11
+"", //12
+"", //13
+"", //14
+"" //15
+);
 
 $notchars = array (
 "", //1
@@ -57,33 +74,37 @@ $notchars = array (
 );
 
 for ($i=0; $i < count($lines); $i++) {
-    if (strlen($lines[$i]) == $chars) {
+    $line = strtolower($lines[$i]);
+    if (strlen($line) == $chars) {
         $wordgood = true;
         $containsletters = true;
         for ($j=0; $j < $chars; $j++) { 
             if ($wantedchars[$j] != "") {
-                if ($wantedchars[$j] != $lines[$i][$j]) {
+                if ($wantedchars[$j] != $line[$j]) {
+                    $wordgood = false;
+                }
+                if ($notwantedchars[$j] == $line[$j]) {
                     $wordgood = false;
                 }
             }
         }
 
-        for ($g=0; $g < $otherchars; $g++) { 
+        for ($g=0; $g < count($otherchars); $g++) { 
             if ($otherchars[$g] != "") {
-                if (!str_contains($lines[$i], $otherchars[$g])) {
+                if (!str_contains($line, $otherchars[$g])) {
                     $containsletters = false;
                 }
             }
         }
         for ($f=0; $f < count($notchars); $f++) { 
             if ($notchars[$f] != "") {
-                if (str_contains($lines[$i], $notchars[$f])) {
+                if (str_contains($line, $notchars[$f])) {
                     $containsletters = false;
                 }
             }
         }
         if ($wordgood && $containsletters) {
-            echo "<br>" . $lines[$i];
+            echo "<br>" . $line;
         }
     }
 }

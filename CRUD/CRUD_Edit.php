@@ -4,7 +4,7 @@
     <?php include("./Functions.php"); ?>
 
     <?php
-        $MyDB = GetDatabase("localhost", "root", "", "bieren");
+        $MyDB = GetDatabase("localhost", "root", "", "3dplus");
 
         if(isset($_POST["submit"])) {
             CRUDEdit($MyDB, $_POST["table"], $_POST["submit"], GetPrimaryKeys($_POST)); // Call the editing page

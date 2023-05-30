@@ -3,7 +3,7 @@
     <?php
         include("./Functions.php");
 
-        $MyDB = GetDatabase("localhost", "root", "", "bieren");
+        $MyDB = GetDatabase("localhost", "root", "", "3dplus");
 
         if (isset($_POST["table"])) {
             CRUDDisplay($MyDB, $_POST["table"]); // Print all the stuff in the table
