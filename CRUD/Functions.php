@@ -1,4 +1,5 @@
 <?php
+// Made By: Sofie Brink
 
 Function CRUDDisplay($db, $table) {
     $result = "<div style='display: flex; align-items: center; margin-bottom: 2vh;'><h2 class=CRUDDisplaytitle>CRUD " . $table . "</h2>";
@@ -210,6 +211,7 @@ function CRUDEdit($db, $table, $type, $pkarr) {
                 }
             }
             $field .= ": </label>";
+            // S O F I E
 
             if (array_key_exists($key["Field"], $fkcollist) == false) {
                 $field .= "<input type=";

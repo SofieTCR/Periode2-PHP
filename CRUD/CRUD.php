@@ -1,6 +1,8 @@
+
 <!DOCTYPE html>
 <body>
     <?php
+        // Made By: Sofie Brink
         include("./Functions.php");
 
         $MyDB = GetDatabase("localhost", "root", "", "3dplus");

@@ -4,6 +4,7 @@
     <?php include("./Functions.php"); ?>
 
     <?php
+        // Made By: Sofie Brink
         $MyDB = GetDatabase("localhost", "root", "", "3dplus");
 
         if(isset($_POST["submit"])) {
