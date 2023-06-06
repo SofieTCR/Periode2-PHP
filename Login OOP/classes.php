@@ -2,86 +2,47 @@
 
 class User
 {
-    private $db;
-    public $loggedInUser;
+    public string $username;
+    public string $password;
 
-    public function __construct(PDO $db)
-    {
-        $this->db = $db;
-        session_start();
+    public function __construct() {
+        // Construct the user object here
+    }
 
-        // Check if user is logged in
-        if ($this->isLoggedIn()) {
-            $this->loggedInUser = $this->getUserById($_SESSION['user']);
+    public function LogIn(PDO $database, string $username, string $password) {
+        // Check the data with the database
+        $sql = "SELECT * FROM users WHERE username = :username;";
+        $stmt = $database->prepare($sql);
+        $stmt->execute(array(":username" => $username));
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if (!$res || password_verify($password, $res['password'])) {
+            $this->username = $username;
+            $this->password = $password;
+            if (!isset($_SESSION)) {
+                session_start();
+            }
+            $_SESSION["user"] = $this;
+            return $res;
         }
     }
 
-    public function createUser($username, $password)
-    {
+    public function Register(PDO $database, string $username, string $password) {
+        // insert the data into the database
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-
-        $query = "INSERT INTO users (username, password) VALUES (:username, :password)";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':username', $username);
-        $stmt->bindParam(':password', $hashedPassword);
-
-        return $stmt->execute();
+        $sql = "INSERT INTO users (username, password) VALUES (:username, :password);";
+        $stmt = $database->prepare($sql);
+        return $stmt->execute(array(":username" => $username, ":password" => $hashedPassword));
     }
 
-    public function login($username, $password)
-    {
-        $query = "SELECT * FROM users WHERE username = :username";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':username', $username);
-        $stmt->execute();
-
-        $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!$user || !password_verify($password, $user['password'])) {
-            return false; // Invalid username or password
+    public function LogOut() {
+        unset($this->username);
+        unset($this->password);
+        if (!isset($_SESSION)) {
+            session_start();
         }
-
-        // If login successful, store user ID in session
-        $_SESSION['user'] = $user['id'];
-        $this->loggedInUser = $user;
-        return true;
-    }
-
-    public function isLoggedIn()
-    {
-    if (isset($_SESSION['user'])) {
-        $userId = $_SESSION['user'];
-        $query = "SELECT COUNT(*) FROM users WHERE id = :userId";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':userId', $userId);
-        $stmt->execute();
-
-        return $stmt->fetchColumn() > 0;
-    }
-
-    return false;
-    }
-
-
-    public function getUserById($userId)
-    {
-        $query = "SELECT * FROM users WHERE id = :userId";
-        $stmt = $this->db->prepare($query);
-        $stmt->bindParam(':userId', $userId);
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
-    public function getLoggedInUser()
-    {
-        return $this->loggedInUser;
-    }
-
-    public function logout()
-    {
-        unset($_SESSION['user']);
-        session_destroy();
-        $this->loggedInUser = null;
+        unset($_SESSION["user"]);
     }
 }
+
+?>
